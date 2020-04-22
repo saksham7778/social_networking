@@ -1,0 +1,11 @@
+{
+  "name": "codeial-full-new-try",
+  "version": "1.0.0",
+  "description": "social_networking_site",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "sakshamAg",
+  "license": "ISC"
+}
