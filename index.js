@@ -9,6 +9,17 @@ const passportLocal = require('./config/passport-local-strategy');
 //added for session cookies
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
+// for sass for css
+const sassMiddleware=require('node-sass-middleware');
+
+app.use(sassMiddleware({
+    /* Options */
+    src:'./assets/scss',
+    dest: './assets/css',
+    debug: true,
+    outputStyle: 'extended',
+    prefix:  '/css'  // Where prefix is at <link rel="stylesheets" href="prefix/style.css"/>
+}));
 
 app.use(express.urlencoded());
 app.use(cookieParser());
