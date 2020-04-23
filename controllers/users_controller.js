@@ -71,3 +71,11 @@ module.exports.createSession = function(req,res){
     console.log('success ! You have Logged IN');
     return res.redirect('/users/profile');
 }
+
+
+module.exports.sign_out = function(req, res){
+    req.logout();
+    // req.flash('success','You have Logged Out')
+    console.log('success ! You have Logged Out');
+    return res.redirect('/');
+} 
