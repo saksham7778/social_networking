@@ -34,8 +34,12 @@ module.exports.create = function(req, res){
         }
 
         if (!user){
-            User.create(req.body, function(err, user){
-
+                User.create({
+                    email: req.body.email,
+                    password:req.body.password,
+                    name:req.body.name
+                }, function(err, user){
+    
                 if(err){
                     // req.flash('error',err);
                     console.log('error in finding user in signing up'); 
