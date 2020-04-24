@@ -23,7 +23,7 @@ module.exports.sign_up = function(req,res){
 }
 
 // get the sign up data
-module.exports.create = function(req, res){
+module.exports.create = async function(req, res){
 
     if (req.body.password != req.body.confirm_password){
         req.flash('error','Passowrds Do not match!');
@@ -31,36 +31,50 @@ module.exports.create = function(req, res){
         return res.redirect('back');
     }
 
-    User.findOne({email: req.body.email}, function(err, user){
-        if(err){
-            req.flash('error','error in finding user in signing up');
-            // console.log('error in finding user in signing up'); 
-            return res.redirect('back');
-        }
-
+    try{
+        let user = await User.findOne({email: req.body.email});
+        console.log('00000000000000000000003',user);
         if (!user){
-                User.create({
-                    email: req.body.email,
-                    password:req.body.password,
-                    name:req.body.name
-                }, function(err, user){
-    
-                if(err){
-                    req.flash('error',err);
-                    // console.log('error in finding user in signing up'); 
-                    return res.redirect('back');
-                }
-
-                req.flash('success','User Signed Up!');
-                // console.log('User Signed Up!');                
-                return res.redirect('/users/sign-in');
+            let newUser=await User.create({
+                email: 11,
+                password:11,
+                name:11,
+                avatar:"https://cdn0.iconfinder.com/data/icons/professional-avatar-5/48/manager_male_avatar_men_character_professions-512.png",
             })
+            console.log('00000000000000000000004',newUser);
+            User.uploadedAvatar(req,res,function(err){
+                if(err) { console.log('******************Multer error',err)};
+
+                console.log('00000000000000000000000000001',req.body);
+                console.log('00000000000000000000000000002',req.file);
+                newUser.email= req.body.email,
+                newUser.password=req.body.password,
+                newUser.name=req.body.name
+
+                if(req.file){
+
+                    // if(newUser.avatar){
+
+                    //     fs.unlinkSync(path.join(__dirname , '..' , newUser.avatar));
+                    // }
+                    //this is saving the path of the uplaoded file into the avatar field in user
+                    newUser.avatar=User.avatarPath+'/'+req.file.filename;
+                }
+                newUser.save();
+            });
+            req.flash('success','User registered!');
+            // console.log('User registered!);
+            return res.redirect('/users/sign-in');
         }else{
             req.flash('error','User already exists!');
             // console.log('User already exists!');
             return res.redirect('back');
         }
-    });
+    } catch (error) {
+            req.flash('error',error);
+            console.log('Error in post_controller-create : ' , error);
+            return res.redirect('back');
+        }
 }
 
 
