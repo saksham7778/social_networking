@@ -15,6 +15,13 @@
 
         <%- include('_header'); %>
 
+        <% if(flash.success && flash.success.length > 0){ %>
+            <%= flash.success %>    
+        <% } %> 
+        <% if(flash.error && flash.error.length > 0){ %>
+            <%= flash.error %>    
+        <% } %> 
+
         <main id="layout-main">
             <%- body %>
         </main>
@@ -23,5 +30,6 @@
 
         <%- script %>
         <script src="https://kit.fontawesome.com/8ebe567dde.js" crossorigin="anonymous"></script>
+       
     </body>
 </html> 

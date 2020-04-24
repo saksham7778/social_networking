@@ -11,6 +11,10 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 // for sass for css
 const sassMiddleware=require('node-sass-middleware');
+// for notification through flash
+const flash = require('connect-flash');
+const customMiddleware = require('./config/middleware');
+
 
 app.use(sassMiddleware({
     /* Options */
@@ -64,6 +68,10 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(passport.setAuthenticatedUser);
+
+//use flash after sesssion beacuse it uses session cookies
+app.use(flash());
+app.use(customMiddleware.setFlash);
 
 app.use('/',require('./routes/index'));
 
