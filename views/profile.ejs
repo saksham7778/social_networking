@@ -2,7 +2,32 @@
 
 <body>
     <h1> Welcome to Codeial Profile Page !</h1>
-  
+    
+    <%  if(locals.user.id == new_user.id){  %>
+
+        <!-- if user matches than show the form -->
+        <p> Name:   <%= new_user.name  %> </p>
+        <p> E-mail: <%= new_user.email %> </p>
+
+        <form action="/users/update/<%=new_user.id%>"  method="POST">
+        
+            <input type="text" name="name" placeholder="Update Name . ." value= "<%= new_user.name  %>"  required>
+            <input type="email" name="email" placeholder="Update Email . ."   value= "<%= new_user.email  %>"  required>
+            
+            <!-- <input type="file" name="avatar"  placeholder="profile picture . ."/> -->
+            <input type="submit" value="Update">
+        
+        </form>
+
+    <%  }else{ %>
+        
+        <!-- else show only the profile info -->
+        <p> Name:   <%= new_user.name  %> </p>
+        <p> E-mail: <%= new_user.email %> </p>
+    
+    <% } %>
+
+
 <p> <b>Name:  </b>    <%=locals.user.name%>       </p>
 <p> <b>Email: </b>    <%=locals.user.email%>      </p>
 

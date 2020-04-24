@@ -1,9 +1,12 @@
 const User = require('../models/user');
 
 module.exports.profile = function(req,res){
-    return res.render('profile',{
-        title:'Codeial|Profile'
-    });
+    User.findById(req.params.id, function(err,user){
+        return res.render('profile',{
+            title:'Codeial|Profile',
+            new_user:user,
+        });
+    })
 }
 
 module.exports.sign_up = function(req,res){
@@ -73,7 +76,7 @@ module.exports.sign_in = function(req,res){
 
 module.exports.createSession = function(req,res){
     console.log('success ! You have Logged IN');
-    return res.redirect('/users/profile');
+    return res.redirect('/');
 }
 
 
@@ -83,3 +86,17 @@ module.exports.sign_out = function(req, res){
     console.log('success ! You have Logged Out');
     return res.redirect('/');
 } 
+
+module.exports.update = function(req, res){
+
+    if(req.user.id== req.params.id){
+        // User.findByIdAndUpdate(req.params.id , {name:req.body.name ,email:req.body.email} , function(err,user)
+        User.findByIdAndUpdate(req.params.id , req.body , function(err,user){
+            return res.redirect('back');
+        });
+    }
+    else{
+        // req.flash('error','Unauthorised');
+        return res.status(401).send('Unauthorised');
+    }
+} 	
