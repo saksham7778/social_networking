@@ -10,13 +10,13 @@ module.exports.create = async function(req, res){
             user:req.user._id
         });
         req.flash('success','post created!');
-        console.log('success Post created!');
+        // console.log('success Post created!');
         return res.redirect('back');
 
     } catch (error) {
         
-        // req.flash('error',error);
-        console.log('Error in post_controller-create : ' , error);
+        req.flash('error',error);
+        // console.log('Error in post_controller-create : ' , error);
         return res.redirect('back');
 
     }
@@ -32,19 +32,21 @@ module.exports.destroy = async function(req, res){
         // .id means converting the object id into string (req.user.id=> req.user._id) 
         if(post.user == req.user.id){ // if the logged in user is same as the posted user or not 
             post.remove();
+            req.flash('success','post and associated comments deleted');
             await Comment.deleteMany({post: req.params.id},function(err){
                 return res.redirect('back');
             });
         }
         else{
-            console.log('you can not delete this post');
+            req.flash('error','you can not delete this post');
+            // console.log('you can not delete this post');
             return res.redirect('back');
         }
 
     } catch (error) {
         
-         // req.flash('error',error);
-         console.log('Error in post_controller-destroy : ' , error);
+         req.flash('error',error);
+        //  console.log('Error in post_controller-destroy : ' , error);
          return res.redirect('back');
          
     }

@@ -13,6 +13,7 @@ module.exports.create = async function(req, res){
                 post:req.body.post,
                 user:req.user._id
             });
+            req.flash('success','comment created!');
             // adding comment to post
             post.comments.push(comment); ///push() ->given by mongoDb    ,comments from model/post.js
             post.save();
@@ -20,8 +21,8 @@ module.exports.create = async function(req, res){
         }
 
     } catch (error) {
-        
-        console.log('Error in comment_controller-create : ' , error);
+        req.flash('error', 'Error in comment_controller-create : ');
+        // console.log('Error in comment_controller-create : ' , error);
         return res.redirect('back');
 
     }
@@ -37,12 +38,14 @@ module.exports.destroy = async function(req, res){
 
         let postId=comment.post;
         comment.remove();
-        console.log('comment deleted');
+        req.flash('success','comment deleted');
+        // console.log('comment deleted');
         await Post.findByIdAndUpdate(postId , { $pull:{ comments: req.params.id }} , function(err,post){
-            return res.redirect('back');
+        return res.redirect('back');
         })
     }else{
-        console.log('you can not delete this comment');
+        req.flash('error','you can not delete this comment');
+        // console.log('you can not delete this comment');
         return res.redirect('back');
     } 
 } 
