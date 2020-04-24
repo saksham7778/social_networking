@@ -1,0 +1,17 @@
+#home-container {
+  display: flex; }
+
+#home-container #feed-posts {
+  width: 80%;
+  padding: 10px;
+  border-top: 5px solid black; }
+
+#home-container #user-friends {
+  text-align: left;
+  width: 20%;
+  padding: 10px;
+  border-left: 1px solid black;
+  border-top: 5px solid black; }
+
+#user-friends h4 {
+  text-align: center; }

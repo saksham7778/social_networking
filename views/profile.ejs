@@ -1,6 +1,7 @@
 <link rel="stylesheet" href="/css/user_profile.css">
 
 <body>
+    
     <h1> Welcome to Codeial Profile Page !</h1>
     
     <%  if(locals.user.id == new_user.id){  %>
@@ -26,9 +27,5 @@
         <p> E-mail: <%= new_user.email %> </p>
     
     <% } %>
-
-
-<p> <b>Name:  </b>    <%=locals.user.name%>       </p>
-<p> <b>Email: </b>    <%=locals.user.email%>      </p>
 
 </body>
