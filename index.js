@@ -73,6 +73,9 @@ app.use(passport.setAuthenticatedUser);
 app.use(flash());
 app.use(customMiddleware.setFlash);
 
+//make the uploads path availabe to the browser
+app.use('/uploads', express.static(__dirname + '/uploads'));
+
 app.use('/',require('./routes/index'));
 
 app.listen(port, function(err){
