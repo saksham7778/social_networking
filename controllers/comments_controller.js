@@ -25,3 +25,22 @@ Post.findById(req.body.post,function(err,post){ //in req.body.post (post is the 
     }
 });
 }
+
+
+module.exports.destroy = async function(req, res){
+
+    Comment.findById(req.params.id,function(err,comment){ 
+        if(comment.user == req.user.id ){
+
+            let postId=comment.post;
+            comment.remove();
+            console.log('comment deleted');
+            Post.findByIdAndUpdate(postId , { $pull:{ comments: req.params.id }} , function(err,post){
+                return res.redirect('back');
+            })
+        }else{
+            console.log('you can not delete this comment');
+            return res.redirect('back');
+        }
+    });
+} 
