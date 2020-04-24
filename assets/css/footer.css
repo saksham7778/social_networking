@@ -1,14 +1,11 @@
 #layout-footer {
   color: white;
   background: grey;
-  padding: 5px;
+  padding: 5px 10px;
   display: flex;
-  justify-content: center;
-  position: fixed;
-  bottom: 0;
-  width: 99%;
-  height: 4rem;
-  border: 1px black solid; }
+  justify-content: center; }
   #layout-footer a {
     color: white;
     text-decoration: none; }
+  #layout-footer .footer-nav ul {
+    list-style: none; }

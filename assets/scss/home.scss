@@ -1,16 +1,18 @@
-#home-container {
-    display: flex;
-   
-  }
-    #home-container #feed-posts {
+#home-container{
+  display: flex;
+
+  
+  #feed-posts{
       width: 80%;
       padding: 10px;
-      border-top: 5px solid black; 
-    }
-    #home-container #user-friends {
+      border-top: 5px solid black;
+  }
+
+  #user-friends{
       text-align: center;
       width: 20%;
       padding: 10px;
       border-left: 1px solid black;
-      border-top: 5px solid black; 
-    }
+      border-top: 5px solid black;
+  }
+}
