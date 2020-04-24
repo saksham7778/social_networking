@@ -1,23 +1,27 @@
 const Post = require('../models/posts');
 const Comment = require('../models/comments');
 
-module.exports.create = function(req, res){
+module.exports.create = async function(req, res){
 
-    Post.create({
+    try {
+        await Post.create({
             content:req.body.content,
             user:req.user._id
-        },function(err,post){
-            if(err) {
-                console.log("error in creating post");
-            }
+        });
+        console.log("post created");
         return res.redirect('back');
-    });
 
+    } catch (error) {
+        console.log("error in creating post");
+        return res.redirect('back');
+    }
 }
 
 module.exports.destroy = async function(req, res){  
 
-    Post.findById(req.params.id , function(err,post){
+    try {
+        
+        let post = Post.findById(req.params.id );
 
         // .id means converting the object id into string (req.user.id=> req.user._id) 
         if(post.user == req.user.id){ // if the logged in user is same as the posted user or not 
@@ -30,5 +34,12 @@ module.exports.destroy = async function(req, res){
             console.log('you can not delete this post');
             return res.redirect('back');
         }
-    });
+
+    } catch (error) {
+        
+        console.log('Error in post_controller-destroy : ' , error);
+        return res.redirect('back');
+
+    }
+
 }
