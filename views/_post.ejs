@@ -1,5 +1,12 @@
 <li>
     <p>
+
+        <% if( post.avatar ) { %>
+            <img src="<%= post.avatar %>" alt="<%= post.user.name %>" style="height: 100px;width: 100px;border-radius:20%;">
+            <br>
+        <% } %>
+        
+        
         <%= post.content %>
             <small>        
                 <% if( (locals.user) && (locals.user.id== post.user.id)){ %>                   

@@ -14,6 +14,7 @@ const sassMiddleware=require('node-sass-middleware');
 // for notification through flash
 const flash = require('connect-flash');
 const customMiddleware = require('./config/middleware');
+// const bodyParser = require('body-parser');
 
 
 app.use(sassMiddleware({
@@ -26,6 +27,7 @@ app.use(sassMiddleware({
 }));
 
 app.use(express.urlencoded());
+// app.use(bodyParser.json());
 app.use(cookieParser());
 
 app.use(express.static('./assets'));

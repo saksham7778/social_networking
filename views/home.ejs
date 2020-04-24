@@ -8,9 +8,11 @@
         <h1 style="text-align: center;">    Posts   </h1>
         
         <% if(locals.user) { %>
-        <form action="/posts/create" id="new-post-form" method="POST">
+        <form action="/posts/create" id="new-post-form" enctype="multipart/form-data"  method="POST">
             <textarea name="content" cols="50" rows="5" placeholder="Type here ... " required>
             </textarea>
+
+            <input type="file" name="avatar"  placeholder="profile picture . ."/>
             <input type="submit" value="Post">
         </form>
         <% } %>
@@ -32,6 +34,9 @@
         
         <%for(u of all_users) { %>
             <p>
+                <% if( u.avatar ) { %>
+                    <img src="<%= u.avatar %>" alt="<%= u.name %>" style="height: 30px;width: 30px; border-radius: 50%;">
+                <% } %>
                 <a href="/users/profile/<%=u.id%>" id="profile-link"> <%= u.name %>    </a>
             </p>
         <% } %>

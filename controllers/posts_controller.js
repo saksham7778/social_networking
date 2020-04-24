@@ -1,20 +1,36 @@
 const Post = require('../models/posts');
 const Comment = require('../models/comments');
+const User = require('../models/user');
+
 
 module.exports.create = async function(req, res){
 
     try {
-        
-        await Post.create({
-            content:req.body.content,
+        let post = await Post.create({
+            content:11,
             user:req.user._id
         });
+        console.log('*****************33',req.body);
+        Post.uploadedAvatar(req,res,function(err){
+            if(err) { console.log('******************Multer error',err)};
+
+            console.log('*****************11',req.file);
+            console.log('*****************22',req.body.content);
+
+            post.content=req.body.content;
+            if(req.file){
+                post.avatar=Post.avatarPath+'/'+req.file.filename;
+            }
+            post.save();
+        });
+        console.log('hello',post);
+
         req.flash('success','post created!');
         // console.log('success Post created!');
         return res.redirect('back');
 
     } catch (error) {
-        
+        console.log(error);
         req.flash('error',error);
         // console.log('Error in post_controller-create : ' , error);
         return res.redirect('back');
