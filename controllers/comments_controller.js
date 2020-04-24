@@ -29,12 +29,13 @@ module.exports.create = async function(req, res){
     
 }
 
-
 module.exports.destroy = async function(req, res){
 
     let comment =await  Comment.findById(req.params.id); 
-
-    if(comment.user == req.user.id ){
+    let post_help =await Post.findById(comment.post);
+    console.log("22222222222222222222222222222222222",req.user.id);
+    console.log("33333333333333333333333333333333333",post_help.user);
+    if(comment.user == req.user.id || post_help.user == req.user.id ){
 
         let postId=comment.post;
         comment.remove();
