@@ -1,16 +1,17 @@
-<li>
+<li class="w3-hoverable">
     <p>
-        <%= comment.content %>
+        <b>Comment: </b> <%= comment.content %>
 
         <small>
             <% if( (locals.user) ){ %>                            
                 <a href="/comments/destroy/<%=comment.id%>"> 
-                    X
+                    <i class="fas fa-window-close"  style="color:red;"> </i>
                 </a>
             <% }%>
         </small>
 
         <br>
-        <%= comment.user.name %>
+        <b> User: </b> <a href="/users/profile/<%= comment.user.id%>">  <%= comment.user.name %>     </a>
+        <!-- <%= comment.user.name %> -->
     </p>
-</li
+</li>

@@ -1,36 +1,39 @@
-<li>
-    <p>
-
+<div id="post_and_comments">
+    <li class="w3-bar w3-card-4 w3-hoverable" style="margin-bottom: 3%;display: flex;" >
+    <div id="post-list">
+        <p>
+        <div>
         <% if( post.avatar ) { %>
-            <img src="<%= post.avatar %>" alt="<%= post.user.name %>" style="height: 100px;width: 100px;border-radius:20%;">
-            <br>
+            <img src="<%= post.avatar %>" alt="<%= post.user.name %>" style="height:auto;width:100%;border-radius:5%;">
+            <br><br><br><br>
         <% } %>
+        </div>
         
-        
-        <%= post.content %>
+        <b> Post: </b><%= post.content %>
             <small>        
                 <% if( (locals.user) && (locals.user.id== post.user.id)){ %>                   
-                    <a class="delete-post-button" href="/posts/destroy/<%=post.id%>"> 
-                        X
+                    <a href="/posts/destroy/<%=post.id%>"> 
+                        <i class="fas fa-window-close"  style="color:red;"> </i>
                     </a>
                 <% }%>
             </small>
-        <br>
-        <%= post.user.name %>
-    </p>
+        <br><br>
+        <b> User: </b> <a href="/users/profile/<%= post.user.id%>">  <%= post.user.name %>     </a>
+        </p>
+    </div>
                         
-    <div class="post-comments">
+    <div class="post-comments" id="comment-list">
     
         <% if(locals.user){ %>
             <form action="/comments/create" method="POST">
-                <input type="text" name="content" placeholder="Type here to add comment . ." required>
+                <input type="text" name="content" placeholder="Type here to add comment . ." class="form-group blue-border-comment form-control" required>
                 <input type="hidden" name="post" value="<%= post._id%>" >
-                <input type="submit" value="Add Comment">
+                <input type="submit" class="btn btn-primary" value="Add Comment">
             </form>
         <% } %>
 
         <div class="post-comments-list">
-            <ul id="post-comments <%= post._id%>">
+            <ul id="post-comments <%= post._id%>" style="width: 50%;">
                 <% for(comment of post.comments){%>
                     
                     <%- include('_comment') -%>                    
@@ -40,4 +43,6 @@
         </div>
 
     </div>
-</li>  
+    </li>
+</div>
+  
