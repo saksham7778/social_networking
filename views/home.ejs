@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="/css/home.css">
 
-<body>
+<body style="background-color: rgb(234, 243, 243);">
     <h1 style="text-align: center;"> Welcome to Codeial Home Page !</h1>
     <div id="home-container">
     <section id="feed-posts">
@@ -37,7 +37,7 @@
         
         <%for(u of all_users) { %>
             <ul class="w3-ul" >
-                <li class="w3-bar w3-card" style="border-radius: 40%;margin-bottom: 20%;">
+                <li class="w3-bar w3-card" style="border-radius: 40%;margin-bottom: 20%;background-color: white;" id="user-friend-li">
                     <% if( u.avatar ) { %>
                         <img src="<%= u.avatar %>" alt="<%= u.name %>" style="height: 30px;width: 30px; border-radius: 50%;">
                     <% } %>
