@@ -14,6 +14,12 @@ const commentSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId, // you can see it from robo3t
         ref:'Post'
     },
+    likes:[
+        {
+            type:mongoose.Schema.Types.ObjectId,
+            ref:'Like'
+        }
+    ]
 }, {
     timestamps: true
 });
