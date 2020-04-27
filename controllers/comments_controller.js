@@ -1,5 +1,7 @@
 const Comment = require('../models/comments');
 const Post = require('../models/posts');
+const Like = require('../models/like');
+
 
 module.exports.create = async function(req, res){
 
@@ -13,6 +15,7 @@ module.exports.create = async function(req, res){
                 post:req.body.post,
                 user:req.user._id
             });
+            
             req.flash('success','comment created!');
             // adding comment to post
             post.comments.push(comment); ///push() ->given by mongoDb    ,comments from model/post.js
@@ -38,6 +41,10 @@ module.exports.destroy = async function(req, res){
     if(comment.user == req.user.id || post_help.user == req.user.id ){
 
         let postId=comment.post;
+
+        // CHANGE :: destroy the associated likes for this comment
+        await Like.deleteMany({likeable: comment._id, onModel: 'Comment'});
+
         comment.remove();
         req.flash('success','comment deleted');
         // console.log('comment deleted');

@@ -1,4 +1,5 @@
-<li class="w3-hoverable">
+<li id="comment-<%= comment._id %>" class="w3-hoverable">
+
     <p>
         <b>Comment: </b> <%= comment.content %>
 
@@ -12,6 +13,24 @@
 
         <br>
         <b> User: </b> <a href="/users/profile/<%= comment.user.id%>">  <%= comment.user.name %>     </a>
-        <!-- <%= comment.user.name %> -->
+        
+        <!-- CHANGE :: display the likes of this comment, if the user is logged in, 
+            then show the link to toggle likes, else, just show the count -->
+        
+            <!-- study about the data attribute -->
+
+            <small>
+
+                <% if (locals.user){ %>
+            
+                    <a class="toggle-like-button" data-likes="<%= comment.likes.length %>" href="/likes/toggle/?id=<%=comment._id%>&type=Comment">
+                            <%= comment.likes.length %> Likes
+                    </a>
+                
+                <% }else{ %>
+                    <%= comment.likes.length %> Likes
+                <% } %>	            
+    
+            </small>
     </p>
 </li>
