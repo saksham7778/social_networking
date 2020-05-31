@@ -22,7 +22,12 @@
       background-color: #eaedf0;
     }
     #post_and_comments li:hover{
-      background-color: white;
+      margin: 0.5%;
+      // padding: 0.5%;
+      border-radius: 1%;
+      transition: 0.3s;
+      box-shadow: 0px 2px 0px rgba(0,0,0,0.2);
+      background-color: rgb(244, 247, 245);
     }
     #post-list{
       width: 35%;
