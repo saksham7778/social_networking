@@ -18,3 +18,9 @@ Features :
 - #### `index.js` - Main file where all the code is written 
 #### `.gitignore` - Tells git which files to ignore
 #### `README` - This file!
+
+
+# GUI
+<image src="main_page.jpeg" height="50%" width="50%" >
+<br>
+<image src="home_page.jpeg" height="50%" width="50%" >
