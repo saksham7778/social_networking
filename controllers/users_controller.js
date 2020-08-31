@@ -1,6 +1,7 @@
 const User = require('../models/user');
 const fs= require('fs');   //file system
 const path = require('path');
+const { Console } = require('console');
 
 module.exports.profile = function(req,res){
     User.findById(req.params.id, function(err,user){
@@ -120,7 +121,8 @@ module.exports.update = async function(req, res){
                 if(req.file){
 
                     if(user.avatar){
-
+                        console.log(__dirname);
+                        console.log(path.join(__dirname , '..' , user.avatar));
                         fs.unlinkSync(path.join(__dirname , '..' , user.avatar));
                     }
                     //this is saving the path of the uplaoded file into the avatar field in user

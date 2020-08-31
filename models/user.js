@@ -27,12 +27,12 @@ const userSchema = new mongoose.Schema({
 let storage = multer.diskStorage({
 
     destination: function (req, file, cb) {             //cb is the callback function
-      cb(null, path.join(__dirname,'..',AVATAR_PATH));   //models../uploads/users/avatars
+      cb(null, path.join(__dirname,'..',AVATAR_PATH));   //models..=> /uploads/users/avatars
     },
     filename: function (req, file, cb) {
       cb(null, file.fieldname + '-' + Date.now());    //fieldname is avatar in the userSchema
     }
-
+    // /uploads/users/avatars/avatar-31271414141
 });
 
 //static
