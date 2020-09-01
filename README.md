@@ -25,4 +25,4 @@ Features :
 <br>
 <image src="home_page.jpeg" height="50%" width="50%" >
 <br>
-<image src="main_.jpeg" height="50%" width="50%" >
+<image src="main_.jpg" height="50%" width="50%" >
