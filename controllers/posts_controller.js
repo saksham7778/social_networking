@@ -13,6 +13,7 @@ module.exports.create = async function(req, res){
             user:req.user._id
         });
         console.log('*****************33',req.body);
+        
         Post.uploadedAvatar(req,res,function(err){
             if(err) { console.log('******************Multer error',err)};
 

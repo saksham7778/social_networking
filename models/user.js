@@ -32,8 +32,8 @@ let storage = multer.diskStorage({
     filename: function (req, file, cb) {
       cb(null, file.fieldname + '-' + Date.now());    //fieldname is avatar in the userSchema
     }
-    // /uploads/users/avatars/avatar-31271414141
-});
+    // /uploads/users/avatars/avatar-31271414141 
+});  
 
 //static
 userSchema.statics.uploadedAvatar = multer({ storage: storage }).single('avatar');
