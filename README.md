@@ -1,9 +1,9 @@
 # Social Networking Site 
 
 Features :
-1) Chat Room
-2) Post Pictures , Quotes
-3) Comments and Likes added
+1) Post Pictures , Quotes
+2) Comments and Likes added
+3) Chat Room
 4) Authentication using PassportJS , passport-local strategy is used.
 5)Used SCSS
 
